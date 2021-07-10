@@ -1,0 +1,56 @@
+<div class="map-container">
+  <div class="pattern-bg-container">
+    <img src="/assets/images/pattern-bg.png" />
+  </div>
+  <div class="map-frame">
+    <div id="map"></div>
+  </div>
+</div>
+
+<div class="content">
+  <h3 class="title">
+    {{ title }}
+  </h3>
+
+  <div class="search-bar">
+    <input
+      class="inputt"
+      type="text"
+      name="input"
+      [(ngModel)]="searchText"
+      [placeholder]="placeholder"
+    />
+    <button (click)="search()"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <div style="margin-top: 42px">
+    <div style="display: flex; justify-content: center" *ngIf="!geolocationObject && !loading">
+      <div class="not-found-container">
+        <label>Not found data</label>
+      </div>
+    </div>
+    <div class="information-container" *ngIf="geolocationObject && !loading">
+      <div id="holder">
+        <h4>IP ADDRESS</h4>
+        <p>{{ geolocationObject.ip }}</p>
+
+        <div id="mask"></div>
+      </div>
+      <div id="holder">
+        <h4>LOCATION</h4>
+        <p>{{ geolocationObject.location.region }}</p>
+        <div id="mask"></div>
+      </div>
+      <div id="holder">
+        <h4>TIMEZONE</h4>
+        <p>{{ geolocationObject.location.timezone }}</p>
+        <div id="mask"></div>
+      </div>
+      <div>
+        <h4>ISP</h4>
+        <p>{{ geolocationObject.isp }}</p>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
